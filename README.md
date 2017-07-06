@@ -5,49 +5,11 @@ Locana is a Remote app for Sony's Wi-Fi camera devices.
 
 Being developed targeting all of Windows 10 platform devices.
 
-<a href="https://www.microsoft.com/store/apps/9nblggh2t6h1?ocid=badge">
-<img src="https://assets.windowsphone.com/f2f77ec7-9ba9-4850-9ebe-77e366d08adc/English_Get_it_Win_10_InvariantCulture_Default.png" width="284" alt="Get it on Windows 10" />
-</a>
+For further information please visit the main project at: <a href="https://github.com/locana/locana"></a>
 
-## Build from sources
+## This Fork...
 
-### Clone repositories
-
-We are using submodule. Don't forget init submodule after locana repository is cloned.
-
-```console
-$ git clone git@github.com:locana/locana.git
-$ cd locana
-$ git submodule update --init
-```
-
-### Import project
-
-Import `Locana/Locana.csproj` on Visual Studio 2017.
-
-## Beta version apps
-
-If you are insterested in beta version apps,
-you can join our [beta test program](http://locana.github.io/win10_uwp.html).
-
-## Feedbacks
-
-We welcome your questions, feature requests and bug reports.
-Don't hesitate to report at [Issues page](https://github.com/locana/locana/issues).
-
-Please don't forget to read [FAQ page](http://locana.github.io/locana_faq.html) at once.
-
-## Supported languages
-
-Locana supports only Japanese and English, since we can use only these two languages.
-
-It is very helpful for us,
-if you can speak other languages and contribute them for additional localizations.
-
-## Sony Camera Remote API
-
-Camera Remote API beta is officially provided by Sony.
-For detail, please refer to the official site: <https://developer.sony.com/develop/cameras/>
+...is about integrating a flexible roboter controller into the software. Than it should be possible to controll for example a Lego Ev3 roboter with a Sony cam stripped to it. It is developed for a pre-dissertation.
 
 ## License
 

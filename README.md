@@ -5,7 +5,7 @@ Locana is a Remote app for Sony's Wi-Fi camera devices.
 
 Being developed targeting all of Windows 10 platform devices.
 
-For further information please visit the main project at: <a href="https://github.com/locana/locana"></a>
+For further information please visit the <a href="https://github.com/locana/locana">main project</a>.
 
 ## This Fork...
 

@@ -1,18 +1,24 @@
 [submodule "modules/kz-ssdp-discovery"]
 	path = modules/kz-ssdp-discovery
 	url = git@github.com:kazyx/kz-ssdp-discovery.git
+	ignore = all
 [submodule "modules/kz-remote-api"]
 	path = modules/kz-remote-api
 	url = git@github.com:kazyx/kz-remote-api.git
+	ignore = all
 [submodule "modules/kz-image-stream"]
 	path = modules/kz-image-stream
 	url = git@github.com:kazyx/kz-image-stream.git
+	ignore = all
 [submodule "modules/NtNfcLib"]
 	path = modules/NtNfcLib
 	url = git@github.com:naotaco/NtNfcLib.git
+	ignore = all
 [submodule "modules/nt-histogram"]
 	path = modules/nt-histogram
 	url = git@github.com:naotaco/nt-histogram.git
+	ignore = all
 [submodule "modules/nt-jpeg-metadata-editor"]
 	path = modules/nt-jpeg-metadata-editor
 	url = git@github.com:naotaco/nt-jpeg-metadata-editor.git
+	ignore = all

@@ -9,7 +9,7 @@ For further information please visit the <a href="https://github.com/locana/loca
 
 ## This Fork...
 
-...is about integrating a flexible roboter controller into the software. Then it should be possible to controll for example a Lego Ev3 roboter with a Sony camera strapped to it. It is developed for a pre-dissertation.
+...is about integrating a flexible robot controller into the software. Then it should be possible to controll for example a Lego Ev3 roboter with a Sony camera strapped to it. It is developed for a thesis at school.
 
 ## License
 

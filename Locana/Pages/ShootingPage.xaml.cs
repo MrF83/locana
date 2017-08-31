@@ -25,6 +25,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
+using MrF83RobotUwp;
 
 namespace Locana.Pages
 {
@@ -352,6 +353,8 @@ namespace Locana.Pages
             base.OnNavigatingFrom(e);
         }
 
+        private RobotClient robot = new RobotClient();
+
         private async Task SetupScreen(TargetDevice target)
         {
             this.target = target;
@@ -393,6 +396,8 @@ namespace Locana.Pages
             {
                 ControlPanel.Children.Add(panel);
             }
+
+            ControlPanel.Children.Add(robot.Gui);
 
             setShootModeEnabled = target.Api.Capability.IsAvailable(API_SET_SHOOT_MODE);
             ControlPanel.SetChildrenControlHitTest(!target.Status.IsRecording());

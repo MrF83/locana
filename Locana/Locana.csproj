@@ -504,6 +504,10 @@
       <Project>{65fc1c19-ed21-43f1-8ff7-2957dc70c551}</Project>
       <Name>KzSsdpDiscoveryUwp</Name>
     </ProjectReference>
+    <ProjectReference Include="..\modules\MrF83RobotUwp\MrF83RobotUwp.csproj">
+      <Project>{1d4c72c4-0eda-422b-be47-a607fb942dc9}</Project>
+      <Name>MrF83RobotUwp</Name>
+    </ProjectReference>
     <ProjectReference Include="..\modules\nt-histogram\NtHistogramWin2d\NtHistogramWin2d.csproj">
       <Project>{6ec75e53-268a-4252-b88b-fcce96919cd8}</Project>
       <Name>NtHistogramWin2d</Name>

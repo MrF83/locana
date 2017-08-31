@@ -76,6 +76,7 @@ namespace Locana.Pages
 
         private async void Global_KeyDown(CoreWindow sender, KeyEventArgs args)
         {
+            robot.KeyActionHandler(sender, args);
             if (args.KeyStatus.RepeatCount == 1)
             {
                 switch (args.VirtualKey)
@@ -227,6 +228,7 @@ namespace Locana.Pages
 
         private void Global_KeyUp(CoreWindow sender, KeyEventArgs args)
         {
+            robot.KeyActionHandler(sender, args);
             if (args.KeyStatus.IsKeyReleased)
             {
                 switch (args.VirtualKey)

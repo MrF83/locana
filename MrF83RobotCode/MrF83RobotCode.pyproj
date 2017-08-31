@@ -1,0 +1,56 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>c2ab44f1-2883-4ee4-a7c2-1d15a01234fe</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>MrF83RobotCode.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <Name>MrF83RobotCode</Name>
+    <RootNamespace>MrF83RobotCode</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="AbstractRobot.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CableCar.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ChainRobot.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MrF83RobotCode.py" />
+    <Compile Include="MyHandler.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SimpleCar.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TwoAxisGimbal.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WebEP.py">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+  <!-- Uncomment the CoreCompile target to enable the Build command in
+       Visual Studio and specify your pre- and post-build commands in
+       the BeforeBuild and AfterBuild targets below. -->
+  <!--<Target Name="CoreCompile" />-->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+</Project>

@@ -21,19 +21,19 @@ class ChainRobot(AbstractRobot):
         self.SetSpeeds(decodedMsg)
 
         if decodedMsg["State"]  == "P":
-            if decodedMsg["Key"] == "A":
+            if decodedMsg["Key"] == "D":
                 self.DriveMotorL.run_forever(speed_sp = self.CurveInnerMotorSpeed)
                 self.DriveMotorR.run_forever(speed_sp = self.DriveSpeed)
 
-            elif decodedMsg["Key"] == "S":
+            elif decodedMsg["Key"] == "W":
                 self.DriveMotorL.run_forever(speed_sp = -self.DriveSpeed)
                 self.DriveMotorR.run_forever(speed_sp = -self.DriveSpeed)
 
-            elif decodedMsg["Key"] == "D":
+            elif decodedMsg["Key"] == "A":
                 self.DriveMotorL.run_forever(speed_sp = self.DriveSpeed)
                 self.DriveMotorR.run_forever(speed_sp = self.CurveInnerMotorSpeed)
 
-            elif decodedMsg["Key"] == "W":
+            elif decodedMsg["Key"] == "S":
                 self.DriveMotorL.run_forever(speed_sp = self.DriveSpeed)
                 self.DriveMotorR.run_forever(speed_sp = self.DriveSpeed)
 

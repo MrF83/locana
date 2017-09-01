@@ -1,10 +1,10 @@
-from SimpleCar import SimpleCar
+from ChainRobot import ChainRobot
 from WebEP import WebEP
 import time
 import sys
 
 def main():
-    robot = SimpleCar()
+    robot = ChainRobot()
 
     a = 0
     while a < 5:

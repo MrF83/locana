@@ -22,16 +22,14 @@ namespace MrF83RobotUwp
         {
             get { return _robotAvailable; }
             set { _robotAvailable = value;
-                if (value==false)
+                if (value == false)
                 {
                     Gui_RobotOn(this);
                 }
             }
         }
 
-        private bool _wasKeysetWSDown = false;
-        private bool _wasKeysetADDown = false;
-        private bool _wasKeysetQEDown = false;
+        private Dictionary<Windows.System.VirtualKey, KeyStatus> _keyHistory = new Dictionary<Windows.System.VirtualKey, KeyStatus>();
 
         /// <summary>
         /// Holds the instance of the 
@@ -70,6 +68,13 @@ namespace MrF83RobotUwp
         /// </summary>
         public RobotClient()
         {
+            _keyHistory.Add(Windows.System.VirtualKey.A, KeyStatus.released);
+            _keyHistory.Add(Windows.System.VirtualKey.S, KeyStatus.released);
+            _keyHistory.Add(Windows.System.VirtualKey.D, KeyStatus.released);
+            _keyHistory.Add(Windows.System.VirtualKey.W, KeyStatus.released);
+            _keyHistory.Add(Windows.System.VirtualKey.Q, KeyStatus.released);
+            _keyHistory.Add(Windows.System.VirtualKey.E, KeyStatus.released);
+
             _robotAvailable = false;
             _discovery = new RobotDiscovery(54545);
             _gui = new RobotGui();
@@ -104,106 +109,79 @@ namespace MrF83RobotUwp
         /// <param name="args">The 
         /// <see cref="Windows.UI.Core.KeyEventArgs"/> 
         /// provided by the KeyUp or KeyDown event.</param>
-        public async void KeyActionHandler(object sender, KeyEventArgs args)
+        public async void KeyActionHandler(object sender, KeyEventArgs args, KeyStatus status)
         {
             if (robotAvailable)
             {
-                KeyStatus status;
-                Key k;
-
-                if (args.KeyStatus.WasKeyDown && !_wasKeysetWSDown)
-                {
-                    _wasKeysetWSDown = true;
-                    status = KeyStatus.pressed;
-                }
-                else if (args.KeyStatus.WasKeyDown && !_wasKeysetADDown)
-                {
-                    _wasKeysetADDown = true;
-                    status = KeyStatus.pressed;
-                }
-                else if (args.KeyStatus.WasKeyDown && !_wasKeysetQEDown)
-                {
-                    _wasKeysetQEDown = true;
-                    status = KeyStatus.pressed;
-                }
-                else if (args.KeyStatus.IsKeyReleased && _wasKeysetWSDown)
-                {
-                    _wasKeysetWSDown = false;
-                    status = KeyStatus.released;
-                }
-                else if (args.KeyStatus.IsKeyReleased && _wasKeysetADDown)
-                {
-                    _wasKeysetADDown = false;
-                    status = KeyStatus.released;
-                }
-                else if (args.KeyStatus.IsKeyReleased && _wasKeysetQEDown)
-                {
-                    _wasKeysetQEDown = false;
-                    status = KeyStatus.released;
-                }
-                else
+                if (status == _keyHistory[args.VirtualKey])
                 {
                     return;
                 }
-
-                switch (args.VirtualKey)
+                else
                 {
-                    case Windows.System.VirtualKey.S:
-                        k = Key.S;
-                        break;
-                    case Windows.System.VirtualKey.A:
-                        k = Key.A;
-                        break;
-                    case Windows.System.VirtualKey.D:
-                        k = Key.D;
-                        break;
-                    case Windows.System.VirtualKey.E:
-                        k = Key.E;
-                        break;
-                    case Windows.System.VirtualKey.Q:
-                        k = Key.Q;
-                        break;
-                    case Windows.System.VirtualKey.W:
-                        k = Key.W;
-                        break;
-                    default:
-                        return;
-
+                    switch (_keyHistory[args.VirtualKey])
+                    {
+                        case KeyStatus.pressed:
+                            _keyHistory[args.VirtualKey] = KeyStatus.released;
+                            break;
+                        case KeyStatus.released:
+                            _keyHistory[args.VirtualKey] = KeyStatus.pressed;
+                            break;
+                    }
                 }
 
-                string msg = GenerateMsg(status, k);
+                string msg = GenerateMsg(status, args);
+                if (msg == null)
+                {
+                    Debug.WriteLine("Message in null");
+                    return;
+                }
                 bool res = await Send(msg);
-                if (!res)
+                if ((!res) && robotAvailable)
                 {
                     robotAvailable = false;
                 }
             }
         }
 
-        private string GenerateMsg(KeyStatus status, Key k)
+        /// <summary>
+        /// The Async Handler used to hook on the KeyUp and KeyDown event of the parent programm.
+        /// </summary>
+        /// <param name="sender">A reference to the object which fired the event.</param>
+        /// <param name="args">The 
+        /// <see cref="Windows.UI.Core.KeyEventArgs"/> 
+        /// provided by the KeyUp or KeyDown event.</param>
+        public async Task KeyActionHandlerAsync(object sender, KeyEventArgs args, KeyStatus status)
+        {
+            await Task.Run(() => KeyActionHandler(sender, args, status));
+        }
+
+        private string GenerateMsg(KeyStatus status, KeyEventArgs args)
         {
             string msg = "";
 
-            switch (k)
+            switch (args.VirtualKey)
             {
-                case Key.A:
+                case Windows.System.VirtualKey.A:
                     msg += "A";
                     break;
-                case Key.S:
+                case Windows.System.VirtualKey.S:
                     msg += "S";
                     break;
-                case Key.D:
+                case Windows.System.VirtualKey.D:
                     msg += "D";
                     break;
-                case Key.W:
+                case Windows.System.VirtualKey.W:
                     msg += "W";
                     break;
-                case Key.Q:
+                case Windows.System.VirtualKey.Q:
                     msg += "Q";
                     break;
-                case Key.E:
+                case Windows.System.VirtualKey.E:
                     msg += "E";
                     break;
+                default:
+                    return null;
             }
 
             switch (status)
@@ -234,6 +212,7 @@ namespace MrF83RobotUwp
         {
             Uri getUri = new Uri(RemoteUri, "function/?id=" + msg);
             HttpClient client = new HttpClient();
+            // TODO?: client.Timeout = new TimeSpan(0, 0, 0, 0, 500);
             string response;
             try
             {

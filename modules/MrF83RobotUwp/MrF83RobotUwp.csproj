@@ -106,7 +106,6 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Key.cs" />
     <Compile Include="KeyStatus.cs" />
     <Compile Include="RobotChangedEventArgs.cs" />
     <Compile Include="RobotClient.cs" />
